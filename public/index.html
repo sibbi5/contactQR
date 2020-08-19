@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alex's Boiler Plate</title>
+    <title>Sibbi's Spotify</title>
 
     <!-- Compiled and minified CSS -->
     <!-- Materialze-->
@@ -17,51 +17,75 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="gradient_brackground">
     <header>
         <nav>
-            <div class="nav-wrapper" style=" background-color: #9E65A9;">
-                <a href="#" class="brand-logo" style="height: 100%;">
-                    <img src="assets/ale.jpg" alt="" class="circle responsive-img" style="height: 100%;padding-top: 5px; padding-left: 15px;"> <!-- notice the "circle" class -->
+            <div class="nav-wrapper gradient">
+                 <a href="#" class="brand-logo" style="height: 100%;">
+                    <img src="assets\spotify.png" alt="" class="responsive-img" style="height: 100%;padding-top: 5px; padding-left: 15px;"> <!-- notice the "circle" class 
     
                 </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="https://www.linkedin.com/in/alessiobonti">Linkedin</a></li>
-                </ul>
+                </ul> -->
             </div>
         </nav>
     </header>
     <main>
 
         <div class="container">
-            <h1 class="title">Alex NExUs</h1>
             <div class="row">
-                <p class="flow-text mainText">This is a basic boilerplate i have created based on Node Express and Materialize, I hope it will help you develop your next project!</p>
-            </div>
-            <div class="row center" style="height: 150px;">
-                <img src="assets/ale2.jpg" alt="" class="circle responsive-img" style="height: 100%;padding-top: 5px; padding-left: 15px;"> <!-- notice the "circle" class -->
-    
-    
-            </div>
-            <div class="row center " style="padding-top:50px;">
-                <a id="testButton" class="waves-effect waves-light btn-large " style="background-color: #9E65A9;"><i class="material-icons left" style="color:white; font-size: larger;">emoji_people</i>Click me!</a>
+                <div class="col s4">
+                    <h3 class="title">PlayList</h3>
+                   <br>
+                    <div class="row">
+                        <img src="assets/Intention.JPG" class="responsive-img" style="width: 50%;" alt="*" id="intentionImage" /><br><br>
+                        <img src="assets/lovemelikeyoudo.JPG" class="responsive-img" style="width: 50%;" alt="*" id="lovemelikeyoudoImage"/><br><br>
+                        
+                        <img src="assets/blankspace.JPG" class="responsive-img" style="width: 50%;" alt="*" id="blankspaceImage" /><br><br>
+                        
+                        <img src="assets/girlslikeyou.JPG" class="responsive-img" style="width: 50%;" alt="*" id="girlslikeyouImage" /><br><br>
+                        
+                        <img src="assets/memories.JPG" class="responsive-img" style="width: 50%;" alt="*" id="memoriesImage" /><br><br>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s8">
+                    
+                    
+                    <div style="padding-top:150px; padding-left: 24%;">
+                        <div id="messageindox" style="color: white;">
 
-    
-            </div>
-    
-
-          
-        </div>
-    
+                        </div>
+                        <!-- <iframe src="https://open.spotify.com/embed/album/4yeYqCuZJNSbLs0oufwwEe" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+                        <p class="media-controls">
+                            <audio id="my-audio" controls>
+                          <source src="assets/song-a.mp3" type="audio/ogg">
+                        Your browser does not support the audio element.
+                        </audio> 
+                        </p>
+                        <br>
+                        <br>
+                        <div style="padding-left: 35%;">
+                            <a id="nextButton" class="btn-large " style="background-color: #1db954;">Next</a><br><br><br>
+                        </div>
+                    </div>
+                    
+                </div>
+              </div> 
+            
+        </div>   
+        
     </main>
-    <footer class="page-footer">
+    <!-- <footer class="page-footer" style= "background-color : black">
         <div class="footer-copyright">
           <div class="container">
           © 2020 Copyright AlexNexus
           <a class="grey-text text-lighten-4 right" href="https://github.com/alexbonti/node-material"><img src="assets/git-logo.svg" style="height: 20px; padding-right: 15px;"></i>Boiler plate here !</a>
           </div>
         </div>
-      </footer>
+      </footer> -->
 
 
 
