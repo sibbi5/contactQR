@@ -19,6 +19,14 @@ $(document).ready(function(){
     })
 
   }
+
+  //reducing redundent lines of code
+  const dbFunctionAndSourceSetting=(idnumber)=>{
+
+    dbcallingfunction(idnumber); 
+    document.getElementById("my-audio").setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+  }
+
   dbcallingfunction(1);
   songs = ["song-a","song-b","song-c","song-d","song-e"]
 
@@ -29,8 +37,7 @@ $(document).ready(function(){
       idnumber= 1;
       currentSongNumber = idnumber-1;
 
-    dbcallingfunction(idnumber); 
-    document.getElementById("my-audio").setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+      dbFunctionAndSourceSetting(idnumber);
     });
 
   //click function for the Lovemelikeyoudo song
@@ -41,9 +48,7 @@ $(document).ready(function(){
       idnumber= 2;
       currentSongNumber = idnumber-1;
 
-      dbcallingfunction(idnumber);
-      document.getElementById("my-audio")
-      .setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+      dbFunctionAndSourceSetting(idnumber);
     });
 
 //click function for blankspace song
@@ -53,9 +58,7 @@ $(document).ready(function(){
     idnumber= 3;
     currentSongNumber = idnumber-1;
     
-    dbcallingfunction(idnumber);
-    document.getElementById("my-audio")
-    .setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+    dbFunctionAndSourceSetting(idnumber);
   });
 
   //click function for girlslikeyouImage song
@@ -65,9 +68,7 @@ $(document).ready(function(){
     idnumber= 4;
     currentSongNumber = idnumber-1;
     
-    dbcallingfunction(idnumber);
-    document.getElementById("my-audio")
-    .setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+    dbFunctionAndSourceSetting(idnumber);
   });
 
   //click function for memoriesImage song
@@ -77,9 +78,7 @@ $(document).ready(function(){
     idnumber= 5;
     currentSongNumber = idnumber-1;
     
-    dbcallingfunction(idnumber);
-    document.getElementById("my-audio")
-    .setAttribute("src", `assets/${songs[idnumber-1]}.mp3`);
+    dbFunctionAndSourceSetting(idnumber);
   });
 
 
@@ -90,12 +89,25 @@ const playNextSong=()=>{
     } else {
         currentSongNumber = currentSongNumber + 1;
     }
-    dbcallingfunction(currentSongNumber+1); 
-    document
-    .getElementById("my-audio")
-    .setAttribute("src", `assets/${songs[currentSongNumber]}.mp3`);
+    dbFunctionAndSourceSetting(currentSongNumber+1);
+    // dbcallingfunction(currentSongNumber+1); 
+    // document.getElementById("my-audio").setAttribute("src", `assets/${songs[currentSongNumber]}.mp3`);
   }
 
-$('#nextButton').click(playNextSong)
+$('#nextButton').click(playNextSong);
+
+//var x = Math.floor((Math.random() * 5) );
+
+const shuffleSongs=()=>{
+
+  var ramdomNumber = Math.floor((Math.random() * 5) );
+  currentSongNumber = ramdomNumber;
+
+  dbFunctionAndSourceSetting(ramdomNumber+1);
+  // dbcallingfunction(ramdomNumber+1); 
+  // document.getElementById("my-audio").setAttribute("src", `assets/${songs[ramdomNumber]}.mp3`);
+}
+
+$('#shuffleButton').click(shuffleSongs);
 
 })
