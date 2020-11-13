@@ -7,7 +7,9 @@
     "express": "^4.17.1",
     "http-post": "^0.1.1",
     "http-proxy": "^1.8.1",
-    "mongodb": "*"
+    "mongodb": "*",
+    "qr-scanner": "^1.2.0",
+    "qrcode-reader": "^1.0.4"
   },
   "main": "server.js",
   "scripts": {
