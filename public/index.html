@@ -41,7 +41,7 @@
 <body>
 
     <div class="container">
-        <h1>Check In!</h1>
+        <h1 id="status">Sign in to Check In.</h1>
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
@@ -75,7 +75,8 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <script src="env.js"></script>
+    <script src="env.js">
+    </script>
     <script type="text/javascript">
         // create QRCodeScanner instance
         window.qrcodeScanner = new QRCodeScanner({ rootSelector: "#qrcode-scanner" });

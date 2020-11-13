@@ -25,8 +25,9 @@ function onSignIn(googleUser) {
     data = appendURL(data);
     console.log('after appending the url data', data.url)
     $.get('/auth/google/callback',data,function(){
-    console.log("Success");
-    
+      console.log("Success");
+      document.getElementById("status").textContent = "Check in Complete";
+      document.getElementById("googleSignin").style.display = 'none';
     });
   })
   }
