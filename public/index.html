@@ -1,95 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QR Scanner</title>
+<html>
 
-    <!-- Compiled and minified CSS -->
-    <!-- Materialze-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <head>
+    <title>cytoscape-edgehandles.js compound snapping demo</title>
 
-    <!-- Materialize icons-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="811763606812-jbkaqtvsfsvna4tb9qsmjt0i23fsso31.apps.googleusercontent.com">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsqr@1.1.1/dist/jsQR.min.js"></script>
-    <script type="text/javascript" src="./QRCodeScanner.js"></script>
-    
-    <style type="text/css">
-    #qrcode-scanner {
-      z-index: 9999;
-      position: fixed;
-      top: 0;
-      margin: 0 auto;
-      width: 100%;
-      max-width: 360px;
-      background-color: #fff;
-      box-shadow: 6px 8px 8px rgba(0, 0, 0, 0.3);
-    }
-  
-    #qrcode-scanner video {
-      width: 100%;
-    }
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+    <!-- for testing with local version of cytoscape.js -->
+    <!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js"></script>
+    <script src="cytoscape-edgehandles.js"></script>
+
+    <style>
+      body {
+        font-family: helvetica neue, helvetica, liberation sans, arial, sans-serif;
+        font-size: 14px;
+      }
+
+      #cy {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 999;
+      }
+
+      h1 {
+        opacity: 0.5;
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      #buttons {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 99999;
+      }
     </style>
-</head>
 
-<body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var cy = cytoscape({
 
-    <div class="container">
-        <h1>Check In!</h1>
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div class="ui one column stackable center aligned page grid">
-                    
-                    <div class="column twelve wide">
-                        <div class="g-signin2" id="googleSignin" data-onsuccess="onSignIn"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <button id="btn-open-qrcode-scanner" onclick="qrcodeScanner.startWebcam(this)">Open QRCode Scanner</button>
-                <div id="qrcode-scanner" style="display: none; border: 1px solid gray;">
-                  <div style="background-color: #ccc; padding: 6px;">
-                    <span name="close" title="Close" style="cursor: pointer; font-weight: bold; float: right;">&times;</span>
-                  </div>
-                 
-                  <div name="pane-webcam" style="display: none;">
-                    <video name="video" autoplay></video>
-                    <canvas name="canvas" style="display: none;"></canvas>
-                  </div>
-                </div>
-                
-            </div>
-            
-        </div>
+  container: document.getElementById('cy'), // container to render in
 
-    </div>
+  elements: [ // list of graph elements to start with
+    { // node a
+      data: { id: 'Health' }
+    },
+    { // node b
+      data: { id: 'absence' }
+    },
+    { // node c
+      data: { id: 'marks' }
+    },
+    { // edge ab
+      data: { id: 'ab', source: 'Health', target: 'absence' }
+    },
+    { // edge ac
+      data: { id: 'ac', source: 'Health', target: 'marks' }
+    }
+  ],
 
+  style: [ // the stylesheet for the graph
+    {
+      selector: 'node',
+      style: {
+        'background-color': '#666',
+        'label': 'data(id)'
+      }
+    },
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {
+      selector: 'edge',
+      style: {
+        'width': 3,
+        'line-color': '#ccc',
+        'target-arrow-color': '#ccc',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier'
+      }
+    }
+  ],
 
-    <script src="env.js"></script>
-    <script type="text/javascript">
-        // create QRCodeScanner instance
-        window.qrcodeScanner = new QRCodeScanner({ rootSelector: "#qrcode-scanner" });
-        document.getElementById("googleSignin").style.display = 'none';
-        $(document).on("click", "#btn-open-qrcode-scanner", function(e) {
-          // open QRCodeScanner webcam scanner
-          qrcodeScanner.open((err, result) => {
-            gettingURL(result.data);
-            console.log("QRCodeScanner result:", result.data);
-            // console.log("QRCodeScanner dataURL:", result.data);
-          });
-        });
-        </script>
+  layout: {
+    name: 'grid',
+    rows: 1
+  }
 
-</body>
+});
+     });
+    </script>
+  </head>
+
+  <body>
+    <h1>cytoscape-edgehandles compound snapping demo</h1>
+
+    <div id="cy"></div>
+
+  </body>
 
 </html>
